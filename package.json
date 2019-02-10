@@ -1,0 +1,18 @@
+{
+  "name": "timer_web",
+  "version": "0.1.0",
+  "main": "index.js",
+  "repository": "git@github.com:Uro3/timer_web.git",
+  "author": "Uro3 <miyakawa.uro3@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --hot"
+  },
+  "devDependencies": {
+    "html-webpack-plugin": "^3.2.0",
+    "webpack": "^4.29.3",
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.1.14"
+  }
+}
