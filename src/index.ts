@@ -1,6 +1,6 @@
 import './style.scss';
 
-import Timer from './js/timer';
+import Timer from './ts/timer';
 
 const timer = new Timer(4000, 500);
 const callback = (time: number) => {
