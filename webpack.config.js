@@ -1,7 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const path = require('path');
 
-module.exports = {
+const config = {
   mode: 'development',
   entry: './src/js/index.js',
   output: {
@@ -10,6 +10,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist')
   },
   devtool: 'inline-source-map',
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        loader: 'pug-loader'
+      },
+    ]
+  },
   devServer: {
     contentBase: './dist',
     inline: true,
@@ -18,7 +26,10 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./index.html"
+      filename: 'index.html',
+      template: "./src/pug/index.pug"
     })
   ]
 };
+
+module.exports = config;
