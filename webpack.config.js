@@ -3,7 +3,7 @@ const path = require('path');
 
 const config = {
   mode: 'development',
-  entry: './src/js/index.js',
+  entry: './src/index.js',
   output: {
     filename: 'main.js?[hash]',
     publicPath: '/',
@@ -27,7 +27,7 @@ const config = {
   plugins: [
     new HtmlWebpackPlugin({
       filename: 'index.html',
-      template: "./src/pug/index.pug"
+      template: "./src/index.pug"
     })
   ]
 };
