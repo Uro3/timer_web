@@ -3,7 +3,7 @@ const path = require('path');
 
 const config = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.ts',
   output: {
     filename: 'main.js?[hash]',
     publicPath: '/',
@@ -12,6 +12,11 @@ const config = {
   devtool: 'inline-source-map',
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
+      },
       {
         test: /\.pug$/,
         loader: 'pug-loader'
@@ -25,6 +30,9 @@ const config = {
         ]
       }
     ]
+  },
+  resolve: {
+    extensions: ['.ts', '.js']
   },
   devServer: {
     contentBase: './dist',
