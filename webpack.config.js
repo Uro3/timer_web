@@ -16,6 +16,14 @@ const config = {
         test: /\.pug$/,
         loader: 'pug-loader'
       },
+      {
+        test: /\.(sass|scss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'sass-loader'
+        ]
+      }
     ]
   },
   devServer: {
