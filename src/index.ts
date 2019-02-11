@@ -1,4 +1,6 @@
 import './style.scss';
 
-const hello_msg = 'hello world';
-console.log(hello_msg);
+import Timer from './js/timer';
+
+const timer = new Timer(4000, 500);
+timer.start();
