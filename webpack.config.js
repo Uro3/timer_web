@@ -1,4 +1,4 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 const config = {
@@ -13,13 +13,13 @@ const config = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.(ts|js)$/,
         use: 'ts-loader',
         exclude: /node_modules/
       },
       {
         test: /\.pug$/,
-        loader: 'pug-loader'
+        use: 'pug-loader'
       },
       {
         test: /\.(sass|scss)$/,
