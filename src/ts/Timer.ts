@@ -1,13 +1,14 @@
 class Timer {
   private targetTime: number;
   private frequency: number;
+  private callback: (time: number) => void;
   private startTime: number = 0;
   private intervalId: number = 0;
-  private callback: (time: number) => void = (time: number) => {};
 
   constructor(targetTime: number, frequency: number) {
     this.targetTime = targetTime;
     this.frequency = frequency;
+    this.callback = (time: number) => null;
   }
 
   public registerCallback = (callback: (time: number) => void) => {
@@ -19,24 +20,23 @@ class Timer {
     const handler = () => {
       const time = this.countdown();
       this.callback(time);
-    }
+    };
     this.intervalId = setInterval(handler, this.frequency);
+  }
+
+  public stop = () => {
+    clearInterval(this.intervalId);
   }
 
   private countdown = () => {
     const pastTime = Date.now() - this.startTime;
     const leftTime = this.targetTime - pastTime;
-    if(leftTime < 0) {
+    if (leftTime < 0) {
       this.stop();
       return 0;
     } else {
       return leftTime;
     }
-
-  }
-
-  public stop = () => {
-    clearInterval(this.intervalId);
   }
 }
 

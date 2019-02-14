@@ -1,0 +1,17 @@
+{
+    "extends": ["tslint:recommended"],
+    "linterOptions": {
+        "exclude": ["node_modules/**/*.ts", "*.js"]
+    },
+    "rules": {
+        "max-line-length": {
+            "options": [120]
+        },
+        "no-console": {
+            "severity": "warning"
+        },
+        "quotemark": {
+            "options": "single"
+        }
+    }
+}
