@@ -11,6 +11,10 @@ class Timer {
     this.callback = (time: number) => null;
   }
 
+  public setTargetTime = (targetTime: number) => {
+    this.targetTime = targetTime;
+  }
+
   public registerCallback = (callback: (time: number) => void) => {
     this.callback = callback;
   }
@@ -21,6 +25,7 @@ class Timer {
       const time = this.countdown();
       this.callback(time);
     };
+    setTimeout(handler, 1);
     this.intervalId = setInterval(handler, this.frequency);
   }
 

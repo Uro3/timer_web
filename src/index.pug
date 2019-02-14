@@ -3,5 +3,12 @@ extends pug/layout.pug
 block content
   h1 Timer Web
   p hello
-  
-  include pug/timer_view.pug
+
+  input#time_input(type="time" value="00:03:00" step=1)
+  button#time_set_button set
+
+  div#timer_view_container
+    include pug/timer_view.pug
+
+  button#timer_start_button start
+  button#timer_stop_button stop
