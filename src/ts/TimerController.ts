@@ -12,6 +12,10 @@ class TimerController {
     this.timer = new Timer(0, 500);
   }
 
+  get isRunning(): boolean {
+    return this.timer.isRunning;
+  }
+
   public addMinutes = (value: number) => {
     const newMinutes = parseInt(this.minuteElement.innerHTML, 10) + value;
     if (newMinutes < 60) {
@@ -23,6 +27,20 @@ class TimerController {
     const newSeconds = parseInt(this.secondElement.innerHTML, 10) + value;
     if (newSeconds < 60) {
       this.secondElement.innerHTML = utils.addZero(newSeconds);
+    }
+  }
+
+  public operateTimer = () => {
+    if (this.timer.isRunning) {
+      this.timer.stop();
+    } else {
+      const targetTime = utils.calculateMillsecond(
+        parseInt(this.minuteElement.innerHTML, 10),
+        parseInt(this.secondElement.innerHTML, 10),
+      );
+      this.timer.setTargetTime(targetTime);
+      this.timer.registerCallback(this.updateView);
+      this.timer.start();
     }
   }
 

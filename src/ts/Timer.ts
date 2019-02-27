@@ -4,11 +4,16 @@ class Timer {
   private callback: (time: number) => void;
   private startTime: number = 0;
   private intervalId: number = 0;
+  private _isRunning: boolean = false;
 
   constructor(targetTime: number, frequency: number) {
     this.targetTime = targetTime;
     this.frequency = frequency;
     this.callback = (time: number) => null;
+  }
+
+  get isRunning(): boolean {
+    return this._isRunning;
   }
 
   public setTargetTime = (targetTime: number) => {
@@ -20,17 +25,23 @@ class Timer {
   }
 
   public start = () => {
-    this.startTime = Date.now();
-    const handler = () => {
-      const time = this.countdown();
-      this.callback(time);
-    };
-    setTimeout(handler, 1);
-    this.intervalId = setInterval(handler, this.frequency);
+    if (!this._isRunning) {
+      this._isRunning = true;
+      this.startTime = Date.now();
+      const handler = () => {
+        const time = this.countdown();
+        this.callback(time);
+      };
+      setTimeout(handler, 1);
+      this.intervalId = setInterval(handler, this.frequency);
+    }
   }
 
   public stop = () => {
-    clearInterval(this.intervalId);
+    if (this._isRunning) {
+      clearInterval(this.intervalId);
+      this._isRunning = false;
+    }
   }
 
   private countdown = () => {
