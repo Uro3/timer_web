@@ -12,6 +12,9 @@
         },
         "quotemark": {
             "options": "single"
+        },
+        "variable-name": {
+            "severity": "warning"
         }
     }
 }
