@@ -30,6 +30,14 @@ class TimerController {
     }
   }
 
+  public clear = () => {
+    if (this.timer.isRunning) {
+      this.timer.stop();
+    }
+    this.minuteElement.innerHTML = '00';
+    this.secondElement.innerHTML = '00';
+  }
+
   public operateTimer = () => {
     if (this.timer.isRunning) {
       this.timer.stop();
