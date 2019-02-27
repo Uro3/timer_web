@@ -3,14 +3,15 @@ import './style.scss';
 import TimerController from './ts/TimerController';
 
 const timerView = document.getElementById('timer_view_container');
-const startButton = document.getElementById('timer_start_button');
-const stopButton = document.getElementById('timer_stop_button');
-const addMinutesButton = document.getElementById('add_minutes_button');
-const addSecondsButton = document.getElementById('add_seconds_button');
 
-if (timerView && startButton && stopButton && addMinutesButton && addSecondsButton) {
+if (timerView) {
+  const startButton = timerView.getElementsByClassName('timer_start_button')[0];
+  const stopButton = timerView.getElementsByClassName('timer_stop_button')[0];
+  const addMinutesButton = timerView.getElementsByClassName('add_minutes_button')[0];
+  const addSecondsButton = timerView.getElementsByClassName('add_seconds_button')[0];
   const minute = timerView.getElementsByClassName('minute')[0];
   const second = timerView.getElementsByClassName('second')[0];
+
   const timer = new TimerController(minute, second);
 
   startButton.addEventListener('click', timer.start);

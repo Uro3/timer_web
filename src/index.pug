@@ -2,13 +2,6 @@ extends pug/layout.pug
 
 block content
   h1 Timer Web
-  p hello
-
-  button#add_minutes_button +1min
-  button#add_seconds_button +10sec
 
   div#timer_view_container
     include pug/timer_view.pug
-
-  button#timer_start_button start
-  button#timer_stop_button stop

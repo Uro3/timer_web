@@ -1,4 +1,13 @@
 div.timer_view
-  span.minute 00
-  span :
-  span.second 10
+  div.setting_buttons
+    button.add_minutes_button +1min
+    button.add_seconds_button +10sec
+
+  div.main_view
+    span.minute 00
+    span :
+    span.second 10
+
+  div.control_buttons
+    button.timer_start_button start
+    button.timer_stop_button stop
