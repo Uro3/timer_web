@@ -14,22 +14,18 @@ if (timerView) {
 
   const timer = new TimerController(minute, second);
 
-  const toggleOperationText = () => {
-    if (timer.isRunning) {
-      operationButton.innerHTML = 'stop';
-    } else {
-      operationButton.innerHTML = 'start';
-    }
-  };
-
   addMinutesButton.addEventListener('click', () => timer.addMinutes(1));
   addSecondsButton.addEventListener('click', () => timer.addSeconds(10));
-  operationButton.addEventListener('click', () => {
-    timer.operateTimer();
-    toggleOperationText();
+  operationButton.addEventListener('click', timer.operateTimer);
+  clearButton.addEventListener('click', timer.clear);
+  document.addEventListener('timer_start', () => {
+    operationButton.innerHTML = 'stop';
   });
-  clearButton.addEventListener('click', () => {
-    timer.clear();
-    toggleOperationText();
+  document.addEventListener('timer_stop', () => {
+    operationButton.innerHTML = 'start';
+  });
+  document.addEventListener('timer_finish', () => {
+    operationButton.innerHTML = 'start';
+    alert('finish');
   });
 }

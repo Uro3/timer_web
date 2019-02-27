@@ -12,10 +12,6 @@ class TimerController {
     this.timer = new Timer(0, 500);
   }
 
-  get isRunning(): boolean {
-    return this.timer.isRunning;
-  }
-
   public addMinutes = (value: number) => {
     const newMinutes = parseInt(this.minuteElement.innerHTML, 10) + value;
     if (newMinutes < 60) {
@@ -32,7 +28,7 @@ class TimerController {
 
   public clear = () => {
     if (this.timer.isRunning) {
-      this.timer.stop();
+      this.stop();
     }
     this.minuteElement.innerHTML = '00';
     this.secondElement.innerHTML = '00';
@@ -40,19 +36,14 @@ class TimerController {
 
   public operateTimer = () => {
     if (this.timer.isRunning) {
-      this.timer.stop();
+      this.stop();
     } else {
-      const targetTime = utils.calculateMillsecond(
-        parseInt(this.minuteElement.innerHTML, 10),
-        parseInt(this.secondElement.innerHTML, 10),
-      );
-      this.timer.setTargetTime(targetTime);
-      this.timer.registerCallback(this.updateView);
-      this.timer.start();
+      this.start();
     }
   }
 
-  public start = () => {
+  private start = () => {
+    const event = new Event('timer_start');
     const targetTime = utils.calculateMillsecond(
       parseInt(this.minuteElement.innerHTML, 10),
       parseInt(this.secondElement.innerHTML, 10),
@@ -60,15 +51,19 @@ class TimerController {
     this.timer.setTargetTime(targetTime);
     this.timer.registerCallback(this.updateView);
     this.timer.start();
+    document.dispatchEvent(event);
   }
 
-  public stop = () => {
+  private stop = () => {
+    const event = new Event('timer_stop');
     this.timer.stop();
+    document.dispatchEvent(event);
   }
 
   private updateView = (time: number) => {
     if (time === 0) {
-      alert('finish!');
+      const event = new Event('timer_finish');
+      document.dispatchEvent(event);
     }
     this.minuteElement.innerHTML = utils.addZero(Math.floor(time / (60 * 1000)));
     this.secondElement.innerHTML = utils.addZero(Math.floor((time % (60 * 1000)) / 1000));
